@@ -77,9 +77,6 @@ class LinkedList(object):
             node = node.next
         print('({})'.format(disp))
 
-
-def main():
-    ll = LinkedList()
     
 if __name__ == '__main__':
     main()
