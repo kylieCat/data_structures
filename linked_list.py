@@ -1,4 +1,5 @@
 #! /usr/bin/python
+
 class Node(object):
     def __init__(self, value=None, next=None):
         self.value = value
@@ -14,18 +15,17 @@ class LinkedList(object):
     def __init__(self, head=None, tail=None, length=0):
         self.head = head
         self.length = length
-    
-    def __str__(self):
-        for node in self:
-            print('({})'.format())
 
     def __repr__(self):
         node = self.head
-        print('('),
+        disp = ''
         while node:
-            print(node),
+            if node.next:
+                disp += '{}, '.format(node)
+            else:
+                disp += '{}'.format(node)
             node = node.next
-        print(')')
+        return u'({})'.format(disp)
     
     def insert(self, val):
         """ Insert val at the head of the list """
@@ -34,8 +34,12 @@ class LinkedList(object):
         self.length += 1
 
     def pop(self):
-        """ return the first value from the list """
-        return self.head
+        """ return the first value from the list raises a LookupError on empty lists """
+        if self.head:
+            return self.head
+        else:
+            print('Cannot pop from empty list')
+            raise LookupError()
     
     def size(self):
         """ Returns the number of items in a list """
@@ -61,22 +65,15 @@ class LinkedList(object):
                 if prev:
                     prev.next = element.next
                 element.next = None
+                self.length -= 1
                 return
             prev = element
             element = element.next
-        return 'Node not in list'
+        return u'Node not in list'
  
     def display(self):
-        node = self.head
-        disp = ''
-        while node:
-            if node.next:
-                disp += '{}, '.format(node)
-            else:
-                disp += '{}'.format(node)
-            node = node.next
-        print('({})'.format(disp))
+        return self.__repr__()
 
-    
+
 if __name__ == '__main__':
     main()

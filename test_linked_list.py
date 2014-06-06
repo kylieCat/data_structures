@@ -29,10 +29,19 @@ def test_list_insert():
     assert n3.next is n2 and n2.next is n1
 
 def test_pop():
-    assert populate_list(create_nodes()).pop().value == 3
+    l = LinkedList()
+    with pytest.raises(LookupError):
+        l.pop()
+    l = populate_list(create_nodes())
+    assert l.pop().value == 3
+    l.remove(l.head)
+    assert l.pop().value == 2
     
 def test_size():
-    assert populate_list(create_nodes()).size() == 3
+    l = populate_list(create_nodes())
+    assert l.size() == 3
+    l.remove(l.head)
+    assert l.size() == 2
     
 def test_search():
     assert populate_list(create_nodes()).search(2) == 2
@@ -42,8 +51,10 @@ def test_remove():
     n1, n2, n3 = create_nodes()
     l = populate_list((n1,n2,n3))
     l.remove(n2)
+    sz = l.size()
     assert n3.next is n1
     assert n2.next is None
     l.remove(n3)
     assert l.head is n1
+    assert l.size() == sz - 1
     
