@@ -11,7 +11,7 @@ def proper_parens(parens):
     """
     try:
         valid_chars = {u'(' : 1, u')' : -1}
-        count = sum((valid_chars[paren] if paren in valid_chars else paren for paren in parens))
+        count = sum((valid_chars[paren] if paren in valid_chars else str(paren) for paren in parens))
         return int(bool(count)) if count >= 0 else -1
     except TypeError:
         print ('Invalid character in string')
