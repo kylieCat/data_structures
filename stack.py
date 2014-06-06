@@ -33,7 +33,7 @@ class Stack(object):
         """
         if self.head:
             result = self.head.value
-            self.head, self.head.next = self.head.next, None
+            self.head.next, self.head = None, self.head.next
             return result
         else:
             raise EmptyStack()
