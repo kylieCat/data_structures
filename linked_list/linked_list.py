@@ -12,9 +12,9 @@ class Node(object):
         return str(self.value)
 
 class LinkedList(object):
-    def __init__(self, head=None, tail=None, length=0):
-        self.head = head
-        self.length = length
+    def __init__(self):
+        self.head = None
+        self.length = 0
 
     def __repr__(self):
         node = self.head
@@ -29,14 +29,14 @@ class LinkedList(object):
     
     def insert(self, val):
         """ Insert val at the head of the list """
-        val.next = self.head
-        self.head = val
+        val = Node(val)
+        val.next, self.head  = self.head, val
         self.length += 1
 
     def pop(self):
         """ return the first value from the list raises a LookupError on empty lists """
         if self.head:
-            return self.head
+            return self.head.value
         else:
             print('Cannot pop from empty list')
             raise LookupError()
@@ -59,7 +59,7 @@ class LinkedList(object):
         element = self.head
         prev = None
         while element:
-            if element is node:
+            if element.value == node:
                 if element is self.head:
                     self.head = element.next
                 if prev:
@@ -67,9 +67,9 @@ class LinkedList(object):
                 element.next = None
                 self.length -= 1
                 return
-            prev = element
-            element = element.next
-        return u'Node not in list'
+            prev, element = element, element.next
+        print(u'Node not in list')
+        raise LookupError()
  
     def display(self):
         return self.__repr__()
