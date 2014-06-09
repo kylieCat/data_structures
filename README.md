@@ -1,3 +1,6 @@
+
+Worked on Weekend coding challenge by myself, no resources used.
+
 Worked with Ian On the Stack.py and test_stack.py
 
 Used the Following Resources:
