@@ -49,7 +49,7 @@ def test_pop():
     assert l.pop() == 1
     assert l.head.value == 2
     assert l.tail.value == 3
-    assert l.size == 2
+    assert l._size == 2
     assert l.pop() == 2
     assert l.head.value == 3
     assert l.tail.value == 3
@@ -66,7 +66,7 @@ def test_shift():
     assert l.shift() == 3
     assert l.head.value == 1
     assert l.tail.value == 2
-    assert l.size == 2
+    assert l._size == 2
     assert l.shift() == 2
     assert l.head.value == 1
     assert l.tail.value == 1
@@ -77,10 +77,10 @@ def test_remove():
     """ Test remove """
     l = DoubleLinkedList()
     with pytest.raises(LookupError):
-        l.remove()
+        l.remove(1)
     for i in range(1,4):
         l.append(i)
-    assert l.remove(2) == 2
+    assert l.remove(2)
     assert l.head.value == 1
     assert l.head.next.value == 3
     assert l.tail.value == 3

@@ -42,15 +42,51 @@ class DoubleLinkedList(object):
     
     def pop(self):
         """ Pop the first value off the head of the list and return it. """
-        pass
+        if self.head:
+            new_head = self.head.next
+            self.head.next = None
+            result = self.head.value
+            self.head = new_head
+            self._size -= 1
+            return result
+        else:
+            raise LookupError
     
     def shift(self):
         """ Remove the last value from the tail of the list and return it. """
-        pass
+        if self.head:
+            new_tail = self.tail.prev
+            self.tail.next = None
+            result = self.tail.value
+            self.tail = new_tail
+            self._size -= 1
+            return result
+        else:
+            raise LookupError
     
     def remove(self, val):
         """ 
         Remove the first instance of 'val' found in the list, starting from
         the head. If 'val' is not present, it will raise a LookupError
         """
-        pass
+        if self.head:
+            node = self.head
+            while node:
+                if node.value == val:
+                    node.prev.next = node.next
+                    node.next.prev = node.prev
+                    self._size -= 1
+                    return True
+                node = node.next
+            raise LookupError
+        else:
+            raise LookupError
+            
+            
+            
+            
+            
+            
+            
+            
+            
