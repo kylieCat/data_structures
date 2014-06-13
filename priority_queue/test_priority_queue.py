@@ -86,7 +86,24 @@ def test_assign_priority_via_pop():
     new_pq._iterations = 4
     new_pq.pop()
     assert [job.priority for job in new_pq.jobs] == [6, 1]
-    
+
+def test_assign_priority_via_insert():
+    new_pq = PriorityQueue()
+    for i in range(5):
+        new_pq.insert(Job(priority= i+1))
+    new_pq.jobs[-1].time_created -= 100
+    new_pq.insert(Job(priority=6))
+    assert [job.priority for job in new_pq.jobs] == [8,5,6,1,4,2]
+
+def test_assign_priority_via_pop():
+    new_pq = PriorityQueue()
+    for i in range(5):
+        new_pq.insert(Job(priority= i+1))
+    new_pq.jobs[-1].time_created -= 100
+    new_pq.insert(Job(priority=6))
+    new_pq.pop()
+    assert [job.priority for job in new_pq.jobs] == [6,5,1,4,2]
+
     
     
     

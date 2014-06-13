@@ -4,7 +4,7 @@ class Job(object):
     def __init__(self, value='Print job', priority=1):
         self.value = value
         self.priority = priority
-        self.time_created = time()
+        self.time_created = int(time())
 
 class PriorityQueue(object):
     def __init__(self, jobs=None):
@@ -19,7 +19,7 @@ class PriorityQueue(object):
         self.jobs[p_index], self.jobs[c_index] = self.jobs[c_index], self.jobs[p_index]
         
     def _adjust_priority(self):
-        current_time  = time()
+        current_time  = int(time())
         for job in self.jobs:
             if current_time - job.time_created > 10:
                 job.priority += 5
@@ -27,7 +27,7 @@ class PriorityQueue(object):
     def _sort(self):
         for index, element in enumerate(self.jobs):
            # import pdb; pdb.set_trace()
-            if self._iterations >= 5:
+            if self._iterations > 5:
                 self._adjust_priority()
                 self._iterations = 0
             p_index = (index - 1) >> 1 if (index - 1) >> 1 > 0  else 0
