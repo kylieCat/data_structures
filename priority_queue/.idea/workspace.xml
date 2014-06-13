@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="febf1518-097e-46a2-b7a9-bae0c38d0f89" name="Default" comment="" />
+    <list default="true" id="febf1518-097e-46a2-b7a9-bae0c38d0f89" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../requirement.txt" afterPath="" />
+    </list>
     <ignored path="priority_queue.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/test_priority_queue.py" changelist="febf1518-097e-46a2-b7a9-bae0c38d0f89" time="1402625948182" ignored="false" />
@@ -27,19 +29,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="priority_queue.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="priority_queue.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/priority_queue.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="33" selection-start="887" selection-end="887" vertical-scroll-proportion="-17.4">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".travis.yml" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.travis.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="14" selection-start="149" selection-end="149" vertical-scroll-proportion="0.12605043">
+            <state line="29" column="33" selection-start="887" selection-end="887" vertical-scroll-proportion="0.6313498">
               <folding />
             </state>
           </provider>
@@ -184,8 +177,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="47" y="31" width="1393" height="860" extended-state="0" />
-    <editor active="true" />
+    <frame x="47" y="31" width="1393" height="860" extended-state="1" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -294,14 +287,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/priority_queue.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="33" selection-start="887" selection-end="887" vertical-scroll-proportion="-17.4">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.travis.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="14" selection-start="149" selection-end="149" vertical-scroll-proportion="0.12605043">
+        <state line="29" column="33" selection-start="887" selection-end="887" vertical-scroll-proportion="0.6313498">
           <folding />
         </state>
       </provider>
