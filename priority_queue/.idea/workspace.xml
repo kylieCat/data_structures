@@ -2,17 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="febf1518-097e-46a2-b7a9-bae0c38d0f89" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/priority_queue.py" afterPath="$PROJECT_DIR$/priority_queue.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_priority_queue.py" afterPath="$PROJECT_DIR$/test_priority_queue.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="priority_queue.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/test_priority_queue.py" changelist="febf1518-097e-46a2-b7a9-bae0c38d0f89" time="1402625948182" ignored="false" />
     <file path="/priority_queue.py" changelist="febf1518-097e-46a2-b7a9-bae0c38d0f89" time="1402627680715" ignored="false" />
     <file path="/Dummy.txt" changelist="febf1518-097e-46a2-b7a9-bae0c38d0f89" time="1402627013893" ignored="false" />
+    <file path="/.travis.yml" changelist="febf1518-097e-46a2-b7a9-bae0c38d0f89" time="1402629072060" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,10 +29,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="priority_queue.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="priority_queue.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/priority_queue.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="33" selection-start="887" selection-end="887" vertical-scroll-proportion="0.6313498">
+            <state line="29" column="33" selection-start="887" selection-end="887" vertical-scroll-proportion="-17.4">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".travis.yml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.travis.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="14" selection-start="149" selection-end="149" vertical-scroll-proportion="0.12605043">
               <folding />
             </state>
           </provider>
@@ -72,6 +78,7 @@
       <list>
         <option value="$PROJECT_DIR$/test_priority_queue.py" />
         <option value="$PROJECT_DIR$/priority_queue.py" />
+        <option value="$PROJECT_DIR$/.travis.yml" />
       </list>
     </option>
   </component>
@@ -289,7 +296,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/priority_queue.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="33" selection-start="887" selection-end="887" vertical-scroll-proportion="0.6313498">
+        <state line="29" column="33" selection-start="887" selection-end="887" vertical-scroll-proportion="-17.4">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.travis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="14" selection-start="149" selection-end="149" vertical-scroll-proportion="0.12605043">
           <folding />
         </state>
       </provider>
