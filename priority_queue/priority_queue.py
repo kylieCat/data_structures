@@ -38,8 +38,8 @@ class PriorityQueue(object):
     def pop(self):
         if self.jobs:
             job = self.jobs.pop(0)
-            self._sort()
             self._iterations += 1
+            self._sort()
             return job
         else:
             raise IndexError

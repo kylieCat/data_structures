@@ -40,10 +40,12 @@ def test_insert(new_pq):
     pq = new_pq
     assert [job.priority for job in pq.jobs] == [9,9,9,7,8,3,7,3,7,4]
     
-def test_pop(new_pq):
+def test_empty_pop():
     pq = PriorityQueue()
     with pytest.raises(IndexError):
         pq.pop()
+    
+def test_pop(new_pq):
     pq = new_pq
     assert pq._iterations == 0
     assert pq.pop().priority == 9
@@ -63,15 +65,27 @@ def test_assign_priority(new_pq):
  
 def test_assign_priority_via_insert():   
     new_pq = PriorityQueue()
-    for i in range(6):
-        new_pq.insert(Job(priority= i+1))
-        if i == 4:
-            new_pq.jobs[4].time_created -= 100
-        
-        import pdb; pdb.set_trace()
-    assert [job.priority for job in new_pq.jobs] == [6,5,6,4,3,2]
+    for _ in range(4):
+        new_pq.insert(Job(priority=1))
+    new_pq.jobs[3].time_created -= 100
+    new_pq.insert(Job(priority=1))
+    assert [job.priority for job in new_pq.jobs] == [6, 1, 1, 1, 1]
+    new_pq.jobs[3].time_created -= 100
+    new_pq._iterations = 4
+    new_pq.insert(Job(priority=1))
+    assert [job.priority for job in new_pq.jobs] == [11, 6, 1, 1, 1, 1]
     
-    
+def test_assign_priority_via_pop():
+    new_pq = PriorityQueue()
+    for _ in range(4):
+        new_pq.insert(Job(priority=1))
+    new_pq.jobs[3].time_created -= 100
+    new_pq.pop()
+    assert [job.priority for job in new_pq.jobs] == [6, 1, 1]
+    new_pq.jobs[2].time_created -= 100
+    new_pq._iterations = 4
+    new_pq.pop()
+    assert [job.priority for job in new_pq.jobs] == [6, 1]
     
     
     
