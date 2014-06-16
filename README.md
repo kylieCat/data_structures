@@ -6,4 +6,5 @@
 - Double_linked_list_
 - PriorityQueue
 - BinaryHeap
+- Graph
 
