@@ -8,4 +8,4 @@
 - BinaryHeap
 - Graph
 
-https://travis-ci.org/eyueld-codefellow/data-structures1.svg?branch=graph
+[![Build Status](https://travis-ci.org/eyueld-codefellow/data-structures1.svg?branch=master)](https://travis-ci.org/eyueld-codefellow/data-structures1)
