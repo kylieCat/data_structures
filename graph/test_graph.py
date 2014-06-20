@@ -9,6 +9,20 @@ def make_nodes():
     for i range(10):
         nodes.append(Node(i))
     return nodes
+    
+@pytest.fixture(scope="function")
+def make_graph(make_nodes):
+    nodes = make_nodes
+    g = Graph(nodes)
+    g.add_edges('n0','n1')
+    g.add_edges('n0','n6')
+    g.add_edges('n0','n8')
+    g.add_edges('n1','n2')
+    g.add_edges('n1','n5')
+    g.add_edges('n2','n3')
+    g.add_edges('n2','n4')
+    g.add_edges('n7','n8')
+    g.add_edges('n8','n9')
 
 def test_add_node():
     _graph = Graph()
@@ -95,7 +109,6 @@ def test_adjacent():
     assert _graph.adjacent(_node2, _node4) == True
     assert _graph.adjacent(_node1, _node4) == False
     
-def test_depth_traversal():
-    g = Graph()
-    for i in range(10):
-        g.add_node(Node(i))
+def test_depth_traversal(make_graph):
+    g = Graph(make_nodes)
+    
