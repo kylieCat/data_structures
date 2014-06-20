@@ -6,7 +6,7 @@ from graph import Graph, Node
 @pytest.fixture(scope="function")
 def make_nodes():
     nodes = []
-    for i range(10):
+    for i in range(10):
         nodes.append(Node(i))
     return nodes
     
@@ -14,20 +14,21 @@ def make_nodes():
 def make_graph(make_nodes):
     nodes = make_nodes
     g = Graph(nodes)
-    g.add_edges('n0','n1')
-    g.add_edges('n0','n6')
-    g.add_edges('n0','n8')
-    g.add_edges('n1','n2')
-    g.add_edges('n1','n5')
-    g.add_edges('n2','n3')
-    g.add_edges('n2','n4')
-    g.add_edges('n7','n8')
-    g.add_edges('n8','n9')
+    g.add_edges(nodes[0],nodes[1])
+    g.add_edges(nodes[0],nodes[6])
+    g.add_edges(nodes[0],nodes[8])
+    g.add_edges(nodes[1],nodes[2])
+    g.add_edges(nodes[1],nodes[5])
+    g.add_edges(nodes[2],nodes[3])
+    g.add_edges(nodes[2],nodes[4])
+    g.add_edges(nodes[7],nodes[8])
+    g.add_edges(nodes[8],nodes[9])
+    return g
 
 def test_add_node():
     _graph = Graph()
     _graph.add_node(Node(4))
-    assert _graph.graph == {'Node 0': [4, []]}
+    assert _graph.graph == {'n0': [4, []]}
 
 
 def test_add_edge():
@@ -35,8 +36,8 @@ def test_add_edge():
     _node1 = Node(4)
     _node2 = Node(5)
     _graph.add_edges(_node1, _node2)
-    assert _graph.graph == {'Node 0': [4, ['Node 1']],
-                            'Node 1': [5, ['Node 0']]}
+    assert _graph.graph == {'n0': [4, ['n1']],
+                            'n1': [5, ['n0']]}
 
 
 def test_del_node():
@@ -45,16 +46,16 @@ def test_del_node():
     _node2 = Node(5)
     _graph.add_edges(_node1, _node2)
     _graph.del_node(_node2)
-    assert _graph.graph == {'Node 0': [4, []]}
+    assert _graph.graph == {'n0': [4, []]}
     _node3 = Node(6)
     _node4 = Node(7)
     _graph.add_edges(_node1, _node2)
     _graph.add_edges(_node3, _node4)
     _graph.add_edges(_node2, _node4)
     _graph.del_node(_node4)
-    assert _graph.graph == {'Node 0' : [4, ['Node 1']],
-                            'Node 1' : [5, ['Node 0']],
-                            'Node 3' : [6, []]}
+    assert _graph.graph == {'n0' : [4, ['n1']],
+                            'n1' : [5, ['n0']],
+                            'n3' : [6, []]}
 
 
 def test_del_edge():
@@ -67,10 +68,10 @@ def test_del_edge():
     _graph.add_edges(_node3, _node4)
     _graph.add_edges(_node2, _node4)
     _graph.del_edge(_node2, _node4)
-    assert _graph.graph == {'Node 0' : [4, ['Node 1']], 
-                            'Node 1' : [5, ['Node 0']], 
-                            'Node 2' : [6, ['Node 3']], 
-                            'Node 3' : [7, ['Node 2']]}
+    assert _graph.graph == {'n0' : [4, ['n1']], 
+                            'n1' : [5, ['n0']], 
+                            'n2' : [6, ['n3']], 
+                            'n3' : [7, ['n2']]}
 
 
 
@@ -92,7 +93,7 @@ def test_neighbours():
     _graph.add_edges(_node1, _node2)
     _graph.add_edges(_node3, _node4)
     _graph.add_edges(_node2, _node4)
-    assert _graph.neighbours(_node2) == [[4, ['Node 1']], [7, ['Node 2', 'Node 1']]]
+    assert _graph.neighbours(_node2) == [[4, ['n1']], [7, ['n2', 'n1']]]
 
 
 def test_adjacent():
@@ -110,5 +111,8 @@ def test_adjacent():
     assert _graph.adjacent(_node1, _node4) == False
     
 def test_depth_traversal(make_graph):
-    g = Graph(make_nodes)
+    g = make_graph
+    for key, value in g.graph.items():
+        print('{} | {}'.format(key, value))
+    assert g.depth_first_traversal('n0') == ['n{}'.format(i) for i in range(10)]
     
