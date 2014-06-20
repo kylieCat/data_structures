@@ -70,12 +70,12 @@ class Graph(object):
             return node2.name in node1.neighbours
 
 
-    def depth_first_traversal(self, start):
-        visited, stack = set(), [start]
+    def breadth_first_traversal(self, start):
+        visited, stack = [], [start]
         while stack:
-            node = stack.pop()
+            node = stack.pop(0)
             if node not in visited:
-                visited.add(node)
+                visited.append(node)
                 stack.extend([n for n in self.graph[node] if n not in visited])
         return visited
 

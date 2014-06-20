@@ -6,7 +6,7 @@ from graph import Graph, Node
 @pytest.fixture(scope="function")
 def make_nodes():
     nodes = []
-    for i in range(10):
+    for i in range(1,11):
         nodes.append(Node(i))
     return nodes
     
@@ -16,7 +16,7 @@ def make_graph(make_nodes):
     g = Graph(nodes)
     g.add_edges(nodes[0],nodes[1])
     g.add_edges(nodes[0],nodes[6])
-    g.add_edges(nodes[0],nodes[8])
+    g.add_edges(nodes[0],nodes[7])
     g.add_edges(nodes[1],nodes[2])
     g.add_edges(nodes[1],nodes[5])
     g.add_edges(nodes[2],nodes[3])
@@ -28,7 +28,7 @@ def make_graph(make_nodes):
 def test_add_node():
     _graph = Graph()
     _graph.add_node(Node(4))
-    assert _graph.graph == {'n0': [4, []]}
+    assert _graph.graph == {'n0': []}
 
 
 def test_add_edge():
@@ -36,8 +36,8 @@ def test_add_edge():
     _node1 = Node(4)
     _node2 = Node(5)
     _graph.add_edges(_node1, _node2)
-    assert _graph.graph == {'n0': [4, ['n1']],
-                            'n1': [5, ['n0']]}
+    assert _graph.graph == {'n0': ['n1'],
+                            'n1': ['n0']}
 
 
 def test_del_node():
@@ -46,16 +46,16 @@ def test_del_node():
     _node2 = Node(5)
     _graph.add_edges(_node1, _node2)
     _graph.del_node(_node2)
-    assert _graph.graph == {'n0': [4, []]}
+    assert _graph.graph == {'n0': []}
     _node3 = Node(6)
     _node4 = Node(7)
     _graph.add_edges(_node1, _node2)
     _graph.add_edges(_node3, _node4)
     _graph.add_edges(_node2, _node4)
     _graph.del_node(_node4)
-    assert _graph.graph == {'n0' : [4, ['n1']],
-                            'n1' : [5, ['n0']],
-                            'n3' : [6, []]}
+    assert _graph.graph == {'n0' : ['n1'],
+                            'n1' : ['n0'],
+                            'n3' : []}
 
 
 def test_del_edge():
@@ -68,10 +68,10 @@ def test_del_edge():
     _graph.add_edges(_node3, _node4)
     _graph.add_edges(_node2, _node4)
     _graph.del_edge(_node2, _node4)
-    assert _graph.graph == {'n0' : [4, ['n1']], 
-                            'n1' : [5, ['n0']], 
-                            'n2' : [6, ['n3']], 
-                            'n3' : [7, ['n2']]}
+    assert _graph.graph == {'n0' : ['n1'], 
+                            'n1' : ['n0'], 
+                            'n2' : ['n3'], 
+                            'n3' : ['n2']}
 
 
 
@@ -93,7 +93,7 @@ def test_neighbours():
     _graph.add_edges(_node1, _node2)
     _graph.add_edges(_node3, _node4)
     _graph.add_edges(_node2, _node4)
-    assert _graph.neighbours(_node2) == [[4, ['n1']], [7, ['n2', 'n1']]]
+    assert _graph.neighbours(_node2) == [['n1'], ['n2', 'n1']]
 
 
 def test_adjacent():
@@ -110,9 +110,13 @@ def test_adjacent():
     assert _graph.adjacent(_node2, _node4) == True
     assert _graph.adjacent(_node1, _node4) == False
     
-def test_depth_traversal(make_graph):
+def test_breadth_traversal(make_graph):
     g = make_graph
     for key, value in g.graph.items():
         print('{} | {}'.format(key, value))
-    assert g.depth_first_traversal('n0') == ['n{}'.format(i) for i in range(10)]
+    print(g.depth_first_traversal('n0'))
+    assert g.depth_first_traversal('n0') == ['n{}'.format(i) for i in range(1,11)]
+    
+def test_breadth_traversal():
+    pass
     
