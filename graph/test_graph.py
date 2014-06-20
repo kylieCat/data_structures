@@ -115,7 +115,7 @@ def test_breadth_traversal(make_graph):
     for key, value in g.graph.items():
         print('{} | {}'.format(key, value))
     print(g.depth_first_traversal('n0'))
-    assert g.depth_first_traversal('n0') == ['n{}'.format(i) for i in range(1,11)]
+    assert g.depth_first_traversal('n0') == ['n0', 'n1', 'n6', 'n7', 'n2', 'n5', 'n8', 'n3', 'n4', 'n9']
     
 def test_breadth_traversal():
     pass
