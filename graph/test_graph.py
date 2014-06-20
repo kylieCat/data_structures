@@ -3,6 +3,13 @@ import pytest
 from graph import Graph, Node
 
 
+@pytest.fixture(scope="function")
+def make_nodes():
+    nodes = []
+    for i range(10):
+        nodes.append(Node(i))
+    return nodes
+
 def test_add_node():
     _graph = Graph()
     _graph.add_node(Node(4))
@@ -89,4 +96,6 @@ def test_adjacent():
     assert _graph.adjacent(_node1, _node4) == False
     
 def test_depth_traversal():
-    
+    g = Graph()
+    for i in range(10):
+        g.add_node(Node(i))
