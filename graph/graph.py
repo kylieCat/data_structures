@@ -79,5 +79,19 @@ class Graph(object):
                 stack.extend([n for n in self.graph[node] if n not in visited])
         return visited
 
-    def breadth_first_traversal(self, start):
-        pass
+    def depth_first_traversal(self, start):
+        visited, stack = [], [start]
+        while stack:
+            node = stack.pop(0)
+            if node not in visited:
+                visited.append(node)
+                stack[0:0] = [n for n in self.graph[node] if n not in visited]
+                #import pdb; pdb.set_trace()
+                while len(self.graph[node]) > 1:
+                    if node == start:
+                        break
+                    else:
+                        stack[0:0] = self.graph[node]
+                        node = self.graph[node][1]
+                        visited.append(node)
+        return visited

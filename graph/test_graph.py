@@ -6,7 +6,7 @@ from graph import Graph, Node
 @pytest.fixture(scope="function")
 def make_nodes():
     nodes = []
-    for i in range(1,11):
+    for i in range(10):
         nodes.append(Node(i))
     return nodes
     
@@ -112,11 +112,9 @@ def test_adjacent():
     
 def test_breadth_traversal(make_graph):
     g = make_graph
-    for key, value in g.graph.items():
-        print('{} | {}'.format(key, value))
-    print(g.depth_first_traversal('n0'))
-    assert g.depth_first_traversal('n0') == ['n0', 'n1', 'n6', 'n7', 'n2', 'n5', 'n8', 'n3', 'n4', 'n9']
+    assert g.breadth_first_traversal('n0') == ['n0', 'n1', 'n6', 'n7', 'n2', 'n5', 'n8', 'n3', 'n4', 'n9']
     
-def test_breadth_traversal():
-    pass
+def test_depth_traversal(make_graph):
+    g = make_graph
+    assert g.depth_first_traversal('n0') == ['n{}'.format(i) for i in range(10)]
     
