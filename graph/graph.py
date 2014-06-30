@@ -79,6 +79,7 @@ class Graph(object):
                 stack.extend([n for n in self.graph[node] if n not in visited])
         return visited
 
+
     def depth_first_traversal(self, start):
         visited, stack = [], [start]
         while stack:
