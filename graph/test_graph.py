@@ -81,7 +81,7 @@ def make_graph(make_nodes):
 def test_add_node():
     _graph = Graph()
     _graph.add_node(Node(4))
-    assert _graph.graph == {'n0': []}
+    assert _graph.graph == {'n0': {}}
 
 
 def test_add_edge():
@@ -89,8 +89,8 @@ def test_add_edge():
     _node1 = Node(4)
     _node2 = Node(5)
     _graph.add_edges(_node1, _node2)
-    assert _graph.graph == {'n0': ['n1'],
-                            'n1': ['n0']}
+    assert _graph.graph == {'n0': {'n1': 2},
+                            'n1': {'n0': 2}}
 
 
 def test_del_node():
@@ -99,16 +99,16 @@ def test_del_node():
     _node2 = Node(5)
     _graph.add_edges(_node1, _node2)
     _graph.del_node(_node2)
-    assert _graph.graph == {'n0': []}
+    assert _graph.graph == {'n0': {}}
     _node3 = Node(6)
     _node4 = Node(7)
     _graph.add_edges(_node1, _node2)
     _graph.add_edges(_node3, _node4)
     _graph.add_edges(_node2, _node4)
     _graph.del_node(_node4)
-    assert _graph.graph == {'n0' : ['n1'],
-                            'n1' : ['n0'],
-                            'n3' : []}
+    assert _graph.graph == {'n0': {'n1': 2},
+                            'n1': {'n0': 2},
+                            'n3': {}}
 
 
 def test_del_edge():
@@ -122,7 +122,7 @@ def test_del_edge():
     _graph.add_edges(_node2, _node4)
     _graph.del_edge(_node2, _node4)
 
-    assert _graph.graph == {'Node 0' : [4, ['Node 1']], 'Node 1' : [5, ['Node 0']], 'Node 2': [6, ['Node 3']], 'Node 3': [7, ['Node 2']]}
+    assert _graph.graph == {'n0': {'n1': 2}, 'n1': {'n0': 2}, 'n2': {'n3': 2}, 'n3': {'n2': 2}}
 
 
 def test_has_node():
@@ -158,7 +158,7 @@ def test_neighbours():
     _graph.add_edges(_node3, _node4)
     _graph.add_edges(_node2, _node4)
 
-    assert _graph.neighbours(_node2) == [[4, ['Node 1']], [7, ['Node 2', 'Node 1']]]
+    assert _graph.neighbours(_node2) == ['n0', 'n3']
 
 
 

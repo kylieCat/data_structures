@@ -6,7 +6,7 @@ class Node(object):
         if neighbours:
             self.neighbours = neighbours
         else:
-            self.neighbours = []
+            self.neighbours = {}
 
 
 class Graph(object):
@@ -29,8 +29,8 @@ class Graph(object):
             self.add_node(node1)
         if node2.name not in self.graph.keys():
             self.add_node(node2)
-        node1.neighbours.append(node2.name)
-        node2.neighbours.append(node1.name)
+        node1.neighbours.update({node2.name: 2})
+        node2.neighbours.update({node1.name: 2})
 
 
     def del_node(self, node):
@@ -38,16 +38,16 @@ class Graph(object):
             raise KeyError
         else:
             node_neighbour = node.neighbours
-            for neighbour in node_neighbour:
-                self.graph[neighbour].remove(node.name)
-            node.neighbours = []
+            for neighbour in node_neighbour.keys():
+                del self.graph[neighbour][node.name]
+            node.neighbours = {}
             del self.graph[node.name]
 
 
     def del_edge(self, node1, node2):
         if node1.name in node2.neighbours and node2.name in node1.neighbours:
-            node1.neighbours.remove(node2.name)
-            node2.neighbours.remove(node1.name)
+            del node1.neighbours[node2.name]
+            del node2.neighbours[node1.name]
         else:
             raise LookupError
 
@@ -60,7 +60,7 @@ class Graph(object):
         if node.name not in self.graph.keys():
             raise KeyError
         else:
-            return [self.graph[name] for name in node.neighbours]
+            return [name for name in node.neighbours.keys()]
 
 
     def adjacent(self, node1, node2):
@@ -86,12 +86,12 @@ class Graph(object):
             if node not in visited:
                 visited.append(node)
                 stack[0:0] = [n for n in self.graph[node] if n not in visited]
-                #import pdb; pdb.set_trace()
+                # import pdb; pdb.set_trace()
                 while len(self.graph[node]) > 1:
                     if node == start:
                         break
                     else:
                         stack[0:0] = self.graph[node]
-                        node = self.graph[node][1]
+                        node = [i for i in self.graph[node].keys() if i not in visited][0]
                         visited.append(node)
         return visited
