@@ -2,18 +2,11 @@
 
 **Data Structures**
 
-- Linked List
 - Stack
-- Proper Parentheticals
+- Queue
+- Double_linked_list_
+- PriorityQueue
+- BinaryHeap
+- Graph
 
-**Linked List**
-
- - Can be used to create a linked list of nodes.
-
-**Stack**
-
- - A Stack data structure implemented in Python
-
-**Proper Parentheticals**
-
- - A funtion implemented in Pyhton that accepts a unicode string of parenthesis. Checks the string to ensure it is balanced.
+[![Build Status](https://travis-ci.org/eyueld-codefellow/data-structures1.svg?branch=master)](https://travis-ci.org/eyueld-codefellow/data-structures1)
