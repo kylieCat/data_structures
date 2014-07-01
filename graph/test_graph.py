@@ -55,7 +55,7 @@ def test_del_node():
     _graph.add_edges(_node3, _node4)
     _graph.add_edges(_node2, _node4)
     _graph.del_node(_node4)
-    assert _graph.graph == {'n0' : ['n1'],
+    assert _graph.graph == {'n0' : {'n1': 2},
                             'n1' : ['n0'],
                             'n3' : []}
 
