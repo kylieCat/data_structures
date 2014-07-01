@@ -1,4 +1,7 @@
 # coding=utf-8
+from random import randint
+
+
 class Node(object):
     def __init__(self, value, neighbours= None):
         self.value = value
@@ -24,13 +27,13 @@ class Graph(object):
         self.graph[node.name] = node.neighbours
 
 
-    def add_edges(self, node1, node2):
+    def add_edges(self, node1, node2, weight):
         if node1.name not in self.graph.keys():
             self.add_node(node1)
         if node2.name not in self.graph.keys():
             self.add_node(node2)
-        node1.neighbours.update({node2.name: 2})
-        node2.neighbours.update({node1.name: 2})
+        node1.neighbours.update({node2.name: weight})
+        node2.neighbours.update({node1.name: weight})
 
 
     def del_node(self, node):
@@ -96,3 +99,16 @@ class Graph(object):
                         node = [i for i in self.graph[node].keys() if i not in visited][0]
                         visited.append(node)
         return visited
+
+
+        # def shorest_path(self, start, end):
+        #     inf = float('inf')
+        #     if start == end:
+        #         return [start]
+        #     distance = {v:inf if v != start else 0 for v in self.graph}
+        #     previous = {v:None for v in self.graph if v != start}
+        #     stack = [v for v in self.graph]
+        #     while stack:
+        #         node = min(distance.items())
+        #         stack.remove(node)
+        #         for neighbor in self.graph[node]:
