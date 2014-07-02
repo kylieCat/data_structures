@@ -90,6 +90,7 @@ def test_del_edge():
                             'n1': {'n0': 1},
                             'n2': {'n3': 1},
                             'n3': {'n2': 1}}
+    assert _graph.graph == {'n0': {'n1': 1}, 'n1': {'n0': 1}, 'n2': {'n3': 1}, 'n3': {'n2': 1}}
 
 
 def test_has_node():
@@ -110,6 +111,9 @@ def test_neighbours():
     _graph.add_edges(_node1, _node2, 1)
     _graph.add_edges(_node3, _node4, 1)
     _graph.add_edges(_node2, _node4, 1)
+    _graph.add_edges(_node1, _node2)
+    _graph.add_edges(_node3, _node4)
+    _graph.add_edges(_node2, _node4)
     assert _graph.neighbours(_node2) == ['n0', 'n3']
 
 
@@ -138,6 +142,7 @@ def test_depth_traversal(make_graph):
     g = make_graph
     assert g.depth_first_traversal('n0') == ['n{}'.format(i) for i in range(10)]
 
+
 def test_dijekstra(make_weighted_graph):
     g = make_weighted_graph
     visited, path = g.dijekstra('n0', 'n4')
@@ -149,3 +154,4 @@ def test_dijekstra(make_weighted_graph):
 
 def test_floyd_warshall(make_weighted_graph):
     assert True
+
