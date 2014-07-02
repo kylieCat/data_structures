@@ -146,3 +146,6 @@ def test_dijekstra(make_weighted_graph):
     expected_visits = {'n0': 0, 'n1': 7, 'n2': 9, 'n3': 20, 'n4': 20, 'n5': 11}
     expected_path = ['n0', 'n1', 'n2', 'n5', 'n4']
     assert expected_visits, expected_path == g.dijekstra('n0', 'n4')
+
+def test_belman_ford(make_weighted_graph):
+    assert True
