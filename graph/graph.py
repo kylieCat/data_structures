@@ -1,4 +1,5 @@
 # coding=utf-8
+
 class Node(object):
     def __init__(self, value, neighbours= None):
         self.value = value
@@ -24,13 +25,13 @@ class Graph(object):
         self.graph[node.name] = node.neighbours
 
 
-    def add_edges(self, node1, node2):
+    def add_edges(self, node1, node2, weight):
         if node1.name not in self.graph.keys():
             self.add_node(node1)
         if node2.name not in self.graph.keys():
             self.add_node(node2)
-        node1.neighbours.update({node2.name: 2})
-        node2.neighbours.update({node1.name: 2})
+        node1.neighbours.update({node2.name: weight})
+        node2.neighbours.update({node1.name: weight})
 
 
     def del_node(self, node):
@@ -79,6 +80,7 @@ class Graph(object):
                 stack.extend([n for n in self.graph[node] if n not in visited])
         return visited
 
+
     def depth_first_traversal(self, start):
         visited, stack = [], [start]
         while stack:
@@ -95,3 +97,63 @@ class Graph(object):
                         node = [i for i in self.graph[node].keys() if i not in visited][0]
                         visited.append(node)
         return visited
+
+
+    def dijekstra(self, start, end):
+        # if start == end:
+        #     return {start : 0}, {}
+        inf = float('inf')
+        visited = {start: 0}
+        stack = {v for v in self.graph}
+        path = []
+        while stack:
+            min_node = None
+            for node in stack:
+                if node in visited:
+                    if min_node is None:
+                        min_node = node
+                    elif visited[node] < visited[min_node]:
+                        min_node = node
+
+            if min_node == end:
+                path.append(min_node)
+                break
+
+            if min_node is None:
+                break
+
+            stack.remove(min_node)
+
+            for neighbor in self.graph[min_node]:
+                alt = visited[min_node] + self.graph[min_node][neighbor]
+                print('{} + {} = {}'.format(visited[min_node], self.graph[min_node][neighbor], alt))
+                if neighbor not in visited or alt < visited[neighbor]:
+                    visited[neighbor] = alt
+                    if min_node not in path:
+                        path.append(min_node)
+        return visited, path
+
+
+    def floyd_warshall(self, a_graph):
+
+        """Returns a tuple of the adjacency matrix of a_graph and adjacency matrix of a_graph containing the shortest path"""
+
+        inf = float('inf')
+        a_graph = a_graph
+
+        def adj(self):
+            """ Given a graph, adj creates an adjacency matrix of a graph."""
+
+            vertices = a_graph.keys()
+            return {v1: {vertex: 0 if v1 == vertex else a_graph[v1].get(vertex, inf) for vertex in vertices} for v1 in vertices}
+
+        adj_of_a_graph = adj(a_graph)
+
+        vertices = adj_of_a_graph.keys()
+        new_matrix = adj_of_a_graph
+
+        for vertex in vertices:
+            new_matrix = {v1: {v2: min(new_matrix[v1][v2], new_matrix[v1][vertex] + new_matrix[vertex][v2]) for v2 in vertices} for v1 in adj_of_a_graph}
+
+        return adj_of_a_graph, new_matrix
+
