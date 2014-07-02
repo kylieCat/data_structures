@@ -26,6 +26,21 @@ def make_graph(make_nodes):
     g.add_edges(nodes[8],nodes[9], 1)
     return g
 
+@pytest.fixture(scope="function")
+def make_weighted_graph(make_nodes):
+    nodes = make_nodes[:6]
+    g = Graph(nodes)
+    g.add_edges(nodes[0],nodes[1], 7)
+    g.add_edges(nodes[0],nodes[2], 9)
+    g.add_edges(nodes[0],nodes[5], 14)
+    g.add_edges(nodes[1],nodes[2], 10)
+    g.add_edges(nodes[1],nodes[3], 15)
+    g.add_edges(nodes[2],nodes[3], 11)
+    g.add_edges(nodes[2],nodes[5], 2)
+    g.add_edges(nodes[3],nodes[4], 6)
+    g.add_edges(nodes[4],nodes[5], 9)
+    return g
+
 
 def test_add_node():
     _graph = Graph()
@@ -123,5 +138,11 @@ def test_depth_traversal(make_graph):
     g = make_graph
     assert g.depth_first_traversal('n0') == ['n{}'.format(i) for i in range(10)]
 
-def test_shortest_path():
-    assert True
+def test_dijekstra(make_weighted_graph):
+    g = make_weighted_graph
+    visited, path = g.dijekstra('n1', 'n4')
+    print('visited: {}\npath: {}'.format(visited, path))
+    assert {'n0' : 0}, ['n0'] == g.dijekstra('n0', 'n0')
+    expected_visits = {'n0': 0, 'n1': 7, 'n2': 9, 'n3': 20, 'n4': 20, 'n5': 11}
+    expected_path = ['n0', 'n1', 'n2', 'n5', 'n4']
+    assert expected_visits, expected_path == g.dijekstra('n0', 'n4')

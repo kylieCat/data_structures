@@ -101,14 +101,36 @@ class Graph(object):
         return visited
 
 
-        # def shorest_path(self, start, end):
-        #     inf = float('inf')
-        #     if start == end:
-        #         return [start]
-        #     distance = {v:inf if v != start else 0 for v in self.graph}
-        #     previous = {v:None for v in self.graph if v != start}
-        #     stack = [v for v in self.graph]
-        #     while stack:
-        #         node = min(distance.items())
-        #         stack.remove(node)
-        #         for neighbor in self.graph[node]:
+    def dijekstra(self, start, end):
+        # if start == end:
+        #     return {start : 0}, {}
+        inf = float('inf')
+        visited = {start: 0}
+        stack = {v for v in self.graph}
+        path = []
+        while stack:
+            min_node = None
+            for node in stack:
+                if node in visited:
+                    if min_node is None:
+                        min_node = node
+                    elif visited[node] < visited[min_node]:
+                        min_node = node
+
+            if min_node == end:
+                path.append(min_node)
+                break
+
+            if min_node is None:
+                break
+
+            stack.remove(min_node)
+
+            for neighbor in self.graph[min_node]:
+                alt = visited[min_node] + self.graph[min_node][neighbor]
+                print('{} + {} = {}'.format(visited[min_node], self.graph[min_node][neighbor], alt))
+                if neighbor not in visited or alt < visited[neighbor]:
+                    visited[neighbor] = alt
+                    if min_node not in path:
+                        path.append(min_node)
+        return visited, path
