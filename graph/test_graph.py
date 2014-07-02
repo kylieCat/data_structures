@@ -140,12 +140,12 @@ def test_depth_traversal(make_graph):
 
 def test_dijekstra(make_weighted_graph):
     g = make_weighted_graph
-    visited, path = g.dijekstra('n1', 'n4')
+    visited, path = g.dijekstra('n0', 'n4')
     print('visited: {}\npath: {}'.format(visited, path))
-    assert {'n0' : 0}, ['n0'] == g.dijekstra('n0', 'n0')
     expected_visits = {'n0': 0, 'n1': 7, 'n2': 9, 'n3': 20, 'n4': 20, 'n5': 11}
     expected_path = ['n0', 'n1', 'n2', 'n5', 'n4']
     assert expected_visits, expected_path == g.dijekstra('n0', 'n4')
+    assert {'n0' : 0}, ['n0'] == g.dijekstra('n0', 'n0')
 
-def test_belman_ford(make_weighted_graph):
+def test_floyd_warshall(make_weighted_graph):
     assert True
