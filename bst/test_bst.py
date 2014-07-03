@@ -102,3 +102,15 @@ def test_balanced():
     bst.insert(3)
     bst.insert(8)
     assert bst.balance() == 0
+
+def test_in_order(self):
+    pass
+
+def test_pre_order(self):
+    pass
+
+def test_post_order(self):
+    pass
+
+def test_level_order(self):
+    pass
