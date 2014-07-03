@@ -134,3 +134,26 @@ class Graph(object):
                     if min_node not in path:
                         path.append(min_node)
         return visited, path
+
+def floyd_warshall(self, a_graph):
+
+    """Returns a tuple of the adjacency matrix of a_graph and adjacency matrix of a_graph containing the shortest path"""
+
+    inf = float('inf')
+    a_graph = a_graph
+
+    def adj(self):
+        """ Given a graph, adj creates an adjacency matrix of a graph."""
+
+        vertices = a_graph.keys()
+        return {v1: {vertex: 0 if v1 == vertex else a_graph[v1].get(vertex, inf) for vertex in vertices} for v1 in vertices}
+
+    adj_of_a_graph = adj(a_graph)
+
+    vertices = adj_of_a_graph.keys()
+    new_matrix = adj_of_a_graph
+
+    for vertex in vertices:
+        new_matrix = {v1: {v2: min(new_matrix[v1][v2], new_matrix[v1][vertex] + new_matrix[vertex][v2]) for v2 in vertices} for v1 in adj_of_a_graph}
+
+    return adj_of_a_graph, new_matrix
