@@ -45,7 +45,60 @@ def test_size():
     assert bst.size() == 1
 
 def test_depth():
-    pass
+    bst = BST()
+    bst.insert(5)
+    assert bst.depth(node=bst.root) == 1
+    bst.insert(3)
+    bst.insert(4)
+    bst.insert(6)
+    assert bst.depth(node=bst.root) == 3
 
-def test_balance():
-    pass
+def test_depth_all_right():
+    bst = BST()
+    for i in range(10,110,10):
+        bst.insert(i)
+    assert bst.depth(bst.root) == 10
+
+def test_depth_all_left():
+    bst = BST()
+    for i in range(110,10,-10):
+        bst.insert(i)
+    assert bst.depth(bst.root) == 10
+
+def test_depth_collatz():
+    bst = BST()
+    for i in range(1,11):
+        if not i % 2:
+            i /= 2
+        else:
+            i = i * 3 + 1
+        print('i = {}'.format(i))
+        bst.insert(i)
+    assert bst.depth(bst.root) == 5
+
+def test_left_balance():
+    bst = BST()
+    bst.insert(5)
+    assert bst.balance() == 0
+    bst.insert(4)
+    bst.insert(3)
+    assert bst.balance() == 2
+
+def test_right_balance():
+    bst = BST()
+    bst.insert(5)
+    assert bst.balance() == 0
+    bst.insert(6)
+    bst.insert(7)
+    assert bst.balance() == -2
+
+def test_balanced():
+    bst = BST()
+    bst.insert(5)
+    assert bst.balance() == 0
+    bst.insert(4)
+    bst.insert(7)
+    assert bst.balance() == 0
+    bst.insert(3)
+    bst.insert(8)
+    assert bst.balance() == 0

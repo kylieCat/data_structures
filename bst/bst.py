@@ -12,25 +12,31 @@ class Node(object):
 class BST(object):
     def __init__(self):
         self.root = None
-        self._size = 0
+        self.r_size = 0
+        self.l_size = 0
+        self._size = self.l_size + self.r_size
 
     def insert(self, val):
         if self.contains(val):
             return
         if self.root is None:
             self.root = Node(val)
+            self._size += 1
         else:
             self._insert(val, self.root)
-        self._size += 1
 
     def _insert(self, val, current_node):
         node = current_node
         if val < node.value:
+            if node is self.root:
+                self.l_size += 1
             if node.l_child:
                 self._insert(val, node.l_child)
             else:
                 node.l_child = Node(val, parent=node)
         else:
+            if node is self.root:
+                self.r_size += 1
             if node.r_child:
                 self._insert(val, node.r_child)
             else:
@@ -52,8 +58,10 @@ class BST(object):
     def size(self):
         return self._size
 
-    def depth(self):
-        pass
+    def depth(self, node, max_depth = 0):
+        if node is None:
+            return max_depth
+        return max(self.depth(node.l_child, max_depth+1), self.depth(node.r_child, max_depth+1))
 
     def balance(self):
-        pass
+        return self.l_size - self.r_size
