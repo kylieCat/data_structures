@@ -7,6 +7,20 @@ def make_bst():
     bst = BST()
     return bst
 
+@pytest.fixture(scope='function')
+def make_nodes(make_bst):
+    bst = make_bst
+    bst.insert(10)
+    bst.insert(2)
+    bst.insert(1)
+    bst.insert(4)
+    bst.insert(3)
+    bst.insert(5)
+    bst.insert(11)
+    bst.insert(13)
+    bst.insert(12)
+    return bst
+
 def test_bst():
     assert BST() is not None
 
@@ -103,14 +117,42 @@ def test_balanced():
     bst.insert(8)
     assert bst.balance() == 0
 
-def test_in_order(self):
-    pass
+def test_in_order(make_nodes):
+    bst = make_nodes
+    pre = bst.in_order()
+    expected = [1,2,3,4,5,10,11,12,13]
+    actual = []
+    for num in pre:
+        actual.append(num.value)
+    print('actual: {}'.format(actual))
+    assert actual == expected
 
-def test_pre_order(self):
-    pass
+def test_pre_order(make_nodes):
+    bst = make_nodes
+    pre = bst.pre_order()
+    expected = [10,2,1,4,3,5,11,13,12]
+    actual = []
+    for num in pre:
+        actual.append(num.value)
+    print('actual: {}'.format(actual))
+    assert actual == expected
 
-def test_post_order(self):
-    pass
+def test_post_order(make_nodes):
+    bst = make_nodes
+    pre = bst.post_order()
+    expected = [1,3,5,4,2,12,13,11,10]
+    actual = []
+    for num in pre:
+        actual.append(num.value)
+    print('actual: {}'.format(actual))
+    assert actual == expected
 
-def test_level_order(self):
-    pass
+def test_level_order(make_nodes):
+    bst = make_nodes
+    pre = bst.level_order()
+    expected = [10,2,11,1,4,13,3,5,12]
+    actual = []
+    for num in pre:
+        actual.append(num.value)
+    print('actual: {}'.format(actual))
+    assert actual == expected

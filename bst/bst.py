@@ -6,7 +6,7 @@ class Node(object):
         self.parent = parent
 
     def __repr__(self):
-        return '<value: {node.value} - parent: {node.parent} - l_child: {node.l_child} - r_child: {node.r_child}>'.format(node=self)
+        return '<value: {node.value}>'.format(node=self)
 
 class BST(object):
     def __init__(self):
@@ -66,18 +66,21 @@ class BST(object):
         return self.l_size - self.r_size
 
     def in_order(self):
+        pass
+
+    def pre_order(self):
         parent_stack = []
         top = self.root
         while top:
-            if top.r_child is not None:
-                parent_stack.insert(0, top.r_child)
-            if top.l_child is not None:
-                parent_stack.insert(0, top.l_child)
-            top = parent_stack.pop(0)
-            yield top
-
-    def pre_order(self):
-        pass
+            try:
+                yield top
+                if top.r_child is not None:
+                    parent_stack.insert(0, top.r_child)
+                if top.l_child is not None:
+                    parent_stack.insert(0, top.l_child)
+                top = parent_stack.pop(0)
+            except IndexError:
+                raise StopIteration
 
     def post_order(self):
         pass
