@@ -127,6 +127,16 @@ def test_in_order(make_nodes):
     print('actual: {}'.format(actual))
     assert actual == expected
 
+def test_empty_in_order(make_bst):
+    bst = make_bst
+    pre = bst.in_order()
+    expected = []
+    actual = []
+    for num in pre:
+        actual.append(num)
+    print('actual: {}'.format(actual))
+    assert actual == expected
+
 def test_pre_order(make_nodes):
     bst = make_nodes
     pre = bst.pre_order()
@@ -134,6 +144,16 @@ def test_pre_order(make_nodes):
     actual = []
     for num in pre:
         actual.append(num.value)
+    print('actual: {}'.format(actual))
+    assert actual == expected
+
+def test_empty_pre_order(make_bst):
+    bst = make_bst
+    pre = bst.pre_order()
+    expected = []
+    actual = []
+    for num in pre:
+        actual.append(num)
     print('actual: {}'.format(actual))
     assert actual == expected
 
@@ -147,6 +167,16 @@ def test_post_order(make_nodes):
     print('actual: {}'.format(actual))
     assert actual == expected
 
+def test_empty_post_order(make_bst):
+    bst = make_bst
+    pre = bst.in_order()
+    expected = []
+    actual = []
+    for num in pre:
+        actual.append(num)
+    print('actual: {}'.format(actual))
+    assert actual == expected
+
 def test_level_order(make_nodes):
     bst = make_nodes
     pre = bst.level_order()
@@ -154,5 +184,15 @@ def test_level_order(make_nodes):
     actual = []
     for num in pre:
         actual.append(num.value)
+    print('actual: {}'.format(actual))
+    assert actual == expected
+
+def test_empty_level_order(make_bst):
+    bst = make_bst
+    pre = bst.level_order()
+    expected = []
+    actual = []
+    for num in pre:
+        actual.append(num)
     print('actual: {}'.format(actual))
     assert actual == expected

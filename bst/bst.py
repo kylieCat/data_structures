@@ -110,7 +110,10 @@ class BST(object):
 
     def level_order(self):
         q = []
-        q.append(self.root)
+        if self.root:
+            q.append(self.root)
+        else:
+            return
         while q:
             node = q.pop(0)
             yield node
