@@ -66,7 +66,16 @@ class BST(object):
         return self.l_size - self.r_size
 
     def in_order(self):
-        pass
+        parent_stack = []
+        node = self.root
+        while parent_stack or node is not None:
+            if node is not None:
+                parent_stack.insert(0, node)
+                node = node.l_child
+            else:
+                node = parent_stack.pop(0)
+                yield node
+                node = node.r_child
 
     def pre_order(self):
         parent_stack = []
@@ -83,7 +92,29 @@ class BST(object):
                 raise StopIteration
 
     def post_order(self):
-        pass
+        parent_stack = []
+        last_node = None
+        node = self.root
+        while parent_stack or node is not None:
+            if node is not None:
+                parent_stack.insert(0, node)
+                node = node.l_child
+            else:
+                peek_node = parent_stack[0]
+                if peek_node.r_child is not None and last_node is not peek_node.r_child:
+                    node = peek_node.r_child
+                else:
+                    parent_stack.pop(0)
+                    yield peek_node
+                    last_node = peek_node
 
     def level_order(self):
-        pass
+        q = []
+        q.append(self.root)
+        while q:
+            node = q.pop(0)
+            yield node
+            if node.l_child is not None:
+                q.append(node.l_child)
+            if node.r_child is not None:
+                q.append(node.r_child)
