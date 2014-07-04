@@ -169,6 +169,7 @@ def test_floyd_warshall(make_weighted_graph):
 
     graph = graph_obj.graph
 
+
     inf = float('inf')
     adj_matrix_of_graph = {'n1': {'n1': 0, 'n2': 2, 'n3': 4, 'n4': inf},
                            'n2': {'n1': 2, 'n2': 0, 'n3': 1, 'n4': 5},
@@ -182,11 +183,8 @@ def test_floyd_warshall(make_weighted_graph):
 
 
     t = graph_obj.floyd_warshall(graph)
-
     print graph
     print t[0]
     print t[1]
-
     assert t[0] == adj_matrix_of_graph
     assert t[1] == adj_matrix_of_graph_with_shortest_path
-
