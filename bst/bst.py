@@ -6,7 +6,7 @@ class Node(object):
         self.parent = parent
 
     def __repr__(self):
-        return '<value: {node.value} - parent: {node.parent} - l_child: {node.l_child} - r_child: {node.r_child}>'.format(node=self)
+        return '<value: {node.value}>'.format(node=self)
 
 class BST(object):
     def __init__(self):
@@ -67,20 +67,57 @@ class BST(object):
 
     def in_order(self):
         parent_stack = []
-        top = self.root
-        while top:
-            if top.r_child is not None:
-                parent_stack.insert(0, top.r_child)
-            if top.l_child is not None:
-                parent_stack.insert(0, top.l_child)
-            top = parent_stack.pop(0)
-            yield top
+        node = self.root
+        while parent_stack or node is not None:
+            if node is not None:
+                parent_stack.insert(0, node)
+                node = node.l_child
+            else:
+                node = parent_stack.pop(0)
+                yield node
+                node = node.r_child
 
     def pre_order(self):
-        pass
+        parent_stack = []
+        top = self.root
+        while top:
+            try:
+                yield top
+                if top.r_child is not None:
+                    parent_stack.insert(0, top.r_child)
+                if top.l_child is not None:
+                    parent_stack.insert(0, top.l_child)
+                top = parent_stack.pop(0)
+            except IndexError:
+                raise StopIteration
 
     def post_order(self):
-        pass
+        parent_stack = []
+        last_node = None
+        node = self.root
+        while parent_stack or node is not None:
+            if node is not None:
+                parent_stack.insert(0, node)
+                node = node.l_child
+            else:
+                peek_node = parent_stack[0]
+                if peek_node.r_child is not None and last_node is not peek_node.r_child:
+                    node = peek_node.r_child
+                else:
+                    parent_stack.pop(0)
+                    yield peek_node
+                    last_node = peek_node
 
     def level_order(self):
-        pass
+        q = []
+        if self.root:
+            q.append(self.root)
+        else:
+            return
+        while q:
+            node = q.pop(0)
+            yield node
+            if node.l_child is not None:
+                q.append(node.l_child)
+            if node.r_child is not None:
+                q.append(node.r_child)
