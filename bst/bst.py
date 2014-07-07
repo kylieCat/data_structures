@@ -8,11 +8,14 @@ class Node(object):
     def __repr__(self):
         return '<value: {node.value}>'.format(node=self)
 
+
 class BST(object):
     def __init__(self):
         self.root = None
         self.r_size = 0
         self.l_size = 0
+        self.l_depth = 0
+        self.r_depth = 0
         self._size = self.l_size + self.r_size
 
     def insert(self, val):
@@ -41,7 +44,6 @@ class BST(object):
             else:
                 node.r_child = Node(val, parent=node)
 
-
     def contains(self, val):
         node = self.root
         while node:
@@ -53,17 +55,16 @@ class BST(object):
                 node = node.r_child
         return False
 
-
     def size(self):
         return self._size
 
-    def depth(self, node, max_depth = 0):
+    def depth(self, node, max_depth=0):
         if node is None:
             return max_depth
         return max(self.depth(node.l_child, max_depth+1), self.depth(node.r_child, max_depth+1))
 
     def balance(self):
-        return self.l_size - self.r_size
+        return self.depth(self.root.l_child, max_depth=1) - self.depth(self.root.r_child, max_depth=1)
 
     def in_order(self):
         parent_stack = []
