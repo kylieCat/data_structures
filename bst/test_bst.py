@@ -93,28 +93,24 @@ def test_depth_collatz():
 def test_left_balance():
     bst = BST()
     bst.insert(5)
-    assert bst.balance() == 0
     bst.insert(4)
     bst.insert(3)
-    assert bst.balance() == 2
+    bst.insert(6)
+    assert bst.balance() == 1
 
 def test_right_balance():
     bst = BST()
     bst.insert(5)
-    assert bst.balance() == 0
     bst.insert(6)
     bst.insert(7)
-    assert bst.balance() == -2
+    bst.insert(3)
+    assert bst.balance() == -1
 
 def test_balanced():
     bst = BST()
     bst.insert(5)
-    assert bst.balance() == 0
     bst.insert(4)
-    bst.insert(7)
-    assert bst.balance() == 0
-    bst.insert(3)
-    bst.insert(8)
+    bst.insert(6)
     assert bst.balance() == 0
 
 def test_in_order(make_nodes):
