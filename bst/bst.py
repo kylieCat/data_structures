@@ -8,6 +8,33 @@ class Node(object):
     def __repr__(self):
         return '<value: {node.value}>'.format(node=self)
 
+    def _find_min(self):
+        current_node = self
+        while current_node.l_child:
+            current_node = current_node.l_child
+        return current_node
+
+    def _replace_parent(self, new_value=None):
+        if self.parent:
+            if self == self.parent.l_child:
+                self.parent.l_child = new_value
+            else:
+                self.parent.r_child = new_value
+        if new_value:
+            new_value.parent = self.parent
+
+    def _delete_node(self, val):
+        if self.l_child and self.r_child:
+            successor = self.r_child._find_min()
+            self.value = successor.value
+            successor._delete_node(successor.value)
+        elif self.l_child:
+            self._replace_parent(self.l_child)
+        elif self.r_child:
+            self._replace_parent(self.r_child)
+        else:
+            self._replace_parent(None)
+
 
 class BST(object):
     def __init__(self):
@@ -122,3 +149,14 @@ class BST(object):
                 q.append(node.l_child)
             if node.r_child is not None:
                 q.append(node.r_child)
+
+    def delete_node(self, val):
+        if not self.root:
+            return None
+        key = self.root
+        while key.value != val:
+            if val < key.value:
+                key = key.l_child
+            else:
+                key = key.r_child
+        key._delete_node(key)
