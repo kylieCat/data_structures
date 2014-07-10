@@ -7,6 +7,7 @@
 - PriorityQueue
 - BinaryHeap
 - Graph
+- Hash Table
 
 **Resources**
 - https://gist.github.com/Ceasar/2474603

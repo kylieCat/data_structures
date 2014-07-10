@@ -17,9 +17,13 @@ class HashTable(object):
 
     def set(self, key, value):
         key_index = self.hash(key)
-        self.hash_table[key_index].append(value)
+        self.hash_table[key_index].append((key, value))
 
     def get(self, key):
-        return self.hash_table[self.hash(key)]
+        for item in self.hash_table[self.hash(key)]:
+            if item[0] == key:
+                return item[1]
+        raise KeyError
+
 
 
