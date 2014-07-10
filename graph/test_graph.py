@@ -111,9 +111,9 @@ def test_neighbours():
     _graph.add_edges(_node1, _node2, 1)
     _graph.add_edges(_node3, _node4, 1)
     _graph.add_edges(_node2, _node4, 1)
-    _graph.add_edges(_node1, _node2)
-    _graph.add_edges(_node3, _node4)
-    _graph.add_edges(_node2, _node4)
+    _graph.add_edges(_node1, _node2, 2)
+    _graph.add_edges(_node3, _node4, 2)
+    _graph.add_edges(_node2, _node4, 2)
     assert _graph.neighbours(_node2) == ['n0', 'n3']
 
 
@@ -153,26 +153,35 @@ def test_dijekstra(make_weighted_graph):
     assert {'n0' : 0}, ['n0'] == g.dijekstra('n0', 'n0')
 
 def test_floyd_warshall(make_weighted_graph):
+
     graph_obj = Graph()
     graph_obj.name_counter = 1
+
     n1 = Node('n1',{'n2':2, 'n3':4})
     n2 = Node('n2',{'n1':2, 'n3':1, 'n4':5})
     n3 = Node('n3',{'n1':4, 'n2':1, 'n4':3})
     n4 = Node('n4',{'n2':5, 'n3':3})
+
     graph_obj.add_node(n1)
     graph_obj.add_node(n2)
     graph_obj.add_node(n3)
     graph_obj.add_node(n4)
+
     graph = graph_obj.graph
+
+
     inf = float('inf')
     adj_matrix_of_graph = {'n1': {'n1': 0, 'n2': 2, 'n3': 4, 'n4': inf},
                            'n2': {'n1': 2, 'n2': 0, 'n3': 1, 'n4': 5},
                            'n3': {'n1': 4, 'n2': 1, 'n3': 0, 'n4': 3},
                            'n4': {'n1': inf, 'n2': 5, 'n3': 3, 'n4': 0}}
+
     adj_matrix_of_graph_with_shortest_path = {'n1': {'n1': 0, 'n2': 2, 'n3': 3, 'n4': 6},
                                               'n2': {'n1': 2, 'n2': 0, 'n3': 1, 'n4': 4},
                                               'n3': {'n1': 3, 'n2': 1, 'n3': 0, 'n4': 3},
                                               'n4': {'n1': 6, 'n2': 4, 'n3': 3, 'n4': 0}}
+
+
     t = graph_obj.floyd_warshall(graph)
     print graph
     print t[0]

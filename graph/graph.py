@@ -1,6 +1,4 @@
 # coding=utf-8
-from random import randint
-
 
 class Node(object):
     def __init__(self, value, neighbours= None):
@@ -134,6 +132,7 @@ class Graph(object):
                     if min_node not in path:
                         path.append(min_node)
         return visited, path
+
 
 def floyd_warshall(self, a_graph):
 
