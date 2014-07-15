@@ -1,4 +1,4 @@
-def insertion_sort(lst):
+def insertion(lst):
     if not lst or len(lst) < 2:
         return lst
     for idx, _ in enumerate(lst):

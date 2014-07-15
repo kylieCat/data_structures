@@ -10,7 +10,7 @@ def random_list():
 
 def test_insertion_sort():
     for _ in range(20):
-        test = [randint(1, 50) for _ in range(1000)]
+        test = [randint(1, 100000) for _ in range(100000)]
         assert insertion_sort(test) == test.sort()
 
 
@@ -20,5 +20,5 @@ def test_empty_insertion_sort():
 
 
 def test_single_insertion_sort():
-    lst = [randint(1,50)]
+    lst = [randint(1, 50)]
     assert insertion_sort(lst) == lst
