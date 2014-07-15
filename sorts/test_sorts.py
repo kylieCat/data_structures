@@ -1,6 +1,5 @@
 import pytest
-import timeit
-from insertion import insertion_sort
+import sorts
 from random import randint
 
 @pytest.fixture(scope='session')
@@ -8,17 +7,17 @@ def random_list():
     return [randint(1, 50) for _ in range(10)]
 
 
-def test_insertion_sort():
+def test_sorts_insertion():
     for _ in range(20):
         test = [randint(1, 100000) for _ in range(100000)]
-        assert insertion_sort(test) == test.sort()
+        assert sorts.insertion(test) == test.sort()
 
 
-def test_empty_insertion_sort():
+def test_empty_insertion():
     lst = []
-    assert insertion_sort(lst) == lst
+    assert sorts.insertion(lst) == lst
 
 
-def test_single_insertion_sort():
+def test_single_insertion():
     lst = [randint(1, 50)]
-    assert insertion_sort(lst) == lst
+    assert sorts.insertion(lst) == lst
