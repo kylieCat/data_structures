@@ -8,5 +8,12 @@ def random_list():
     return [randint(1, 50) for _ in range(10)]
 
 
-def test_insertion_sort(random_list):
-    pass
+def test_insertion_sort():
+    for _ in range(20):
+        test = [randint(1, 50) for _ in range(1000)]
+        assert insertion_sort(test) == test.sort()
+
+
+def test_empty_insertion_sort():
+    lst = []
+    assert insertion_sort(lst) == lst
