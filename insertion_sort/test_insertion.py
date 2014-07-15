@@ -20,5 +20,5 @@ def test_empty_insertion_sort():
 
 
 def test_single_insertion_sort():
-    lst = [randint()]
+    lst = [randint(1,50)]
     assert insertion_sort(lst) == lst
