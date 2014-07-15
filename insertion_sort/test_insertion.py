@@ -17,3 +17,8 @@ def test_insertion_sort():
 def test_empty_insertion_sort():
     lst = []
     assert insertion_sort(lst) == lst
+
+
+def test_single_insertion_sort():
+    lst = [randint()]
+    assert insertion_sort(lst) == lst
