@@ -1,1 +1,1 @@
-import sorts
+from sorts import merge, insertion
