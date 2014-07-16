@@ -37,6 +37,19 @@ def _merge(left, right):
 
 def quick(lst, i=0, k=len(lst)):
     if i < k:
-        p = partition(lst, i, k)
+        p = _partition(lst, i, k)
         quick(lst, i, p-1)
         quick(lst, p + 1, k)
+
+
+def _partition(lst, left, right):
+    pivot_index = lst[len(lst) >> 1]
+    pivot_value = lst[pivot_index]
+    lst[pivot_index], lst[right] = lst[right], lst[pivot_index]
+    store_index = left
+    for i in range(left, right-1):
+        if lst[i] < pivot_value:
+            lst[i], lst[store_index] = lst[store_index], lst[i]
+            store_index += 1
+    lst[store_index], lst[right] = lst[right], lst[store_index]
+    return store_index
