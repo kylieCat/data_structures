@@ -10,7 +10,7 @@ def random_list():
 
 def test_sorts_insertion():
     for _ in range(20):
-        test = [randint(1, 100000) for _ in range(100000)]
+        test = [randint(1, 100000) for _ in range(1000)]
         expected = sorted(test)
         sorts.insertion(test)
         assert test == expected
@@ -28,7 +28,7 @@ def test_single_insertion():
 
 def test_sorts_merge():
     for _ in range(20):
-        test = [randint(1, 100000) for _ in range(100000)]
+        test = [randint(1, 100000) for _ in range(1000)]
         expected = sorted(test)
-        sorts.merge(test)
-        assert test == expected
+        actual = sorts.merge(test)
+        assert actual == expected
