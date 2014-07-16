@@ -33,3 +33,10 @@ def _merge(left, right):
             result.append(right[0])
             right = right[1:]
     return result
+
+
+def quick(lst, i=0, k=len(lst)):
+    if i < k:
+        p = partition(lst, i, k)
+        quick(lst, i, p-1)
+        quick(lst, p + 1, k)
