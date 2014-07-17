@@ -33,3 +33,12 @@ def _merge(left, right):
             result.append(right[0])
             right = right[1:]
     return result
+
+
+def quick(lst):
+    if len(lst) < 2:
+        return lst
+    pivot = lst[0]
+    l = quick([x for x in lst[1:] if x < pivot])
+    u = quick([x for x in lst[1:] if x >= pivot])
+    return l + [pivot] + u

@@ -1,1 +1,1 @@
-from sorts import merge, insertion
+from sorts import merge, insertion, quick
