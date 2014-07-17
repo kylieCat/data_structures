@@ -36,7 +36,10 @@ def test_sorts_merge():
 
 def test_sorts_quick():
     for _ in range(20):
-        test = [randint(1, 100000) for _ in range(1000)]
+        test = [randint(1, 50) for _ in range(10)]
+        print('test: {}'.format(test))
         expected = sorted(test)
         actual = sorts.quick(test)
+        print('actual: {}'.format(actual))
+        print('expected: {}'.format(expected))
         assert actual == expected
