@@ -45,37 +45,40 @@ def quick(lst):
 
 
 def radix(lst):
-    rad_lst = _radify(lst)
-    buckets = _make_buckets()
-    place = _max_abs(lst)
-    result = []
+    place = _max_digits(lst)
+    result = lst[:]
     for i in xrange(place):
-        for num in rad_lst:
-            buckets[num[-1 - i]].append(num)
-        result.extend(buckets)
+        result = _flatten(_split(lst, i))
+        print(result)
     return result
 
 
-def _radify(lst):
-    result = []
-    passes = _max_abs(lst)
-    for element in lst:
-        rad = []
-        for i in xrange(passes):
-            rad[0:0] = element % 10,
-            element /= 10
-        result.append(tuple(rad))
-    return result
+def _radify(number, place):
+    return number // 10 ** place % 10
 
 
 def _make_buckets():
     return [[] for _ in xrange(10)]
 
 
-def _max_abs(lst):
+def _max_digits(lst):
     max_num = max([abs(num) for num in lst])
     places = 0
     while max_num:
         max_num /= 10
         places += 1
     return places
+
+
+def _split(lst, place):
+    buckets = _make_buckets()
+    for num in lst:
+        buckets[_radify(num, place)].append(num)
+    return buckets
+
+
+def _flatten(lst):
+    flat = []
+    for sub in lst:
+        flat.extend(sub)
+    return flat
