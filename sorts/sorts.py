@@ -42,3 +42,42 @@ def quick(lst):
     l = quick([x for x in lst[1:] if x < pivot])
     u = quick([x for x in lst[1:] if x >= pivot])
     return l + [pivot] + u
+
+
+def radix(lst):
+    place = _max_digits(lst)
+    result = lst[:]
+    for i in xrange(place):
+        result = _flatten(_split(result, i))
+    return result
+
+
+def _radify(number, place):
+    return number // 10 ** place % 10
+
+
+def _make_buckets():
+    return [[] for _ in xrange(10)]
+
+
+def _max_digits(lst):
+    max_num = max([abs(num) for num in lst])
+    places = 0
+    while max_num:
+        max_num /= 10
+        places += 1
+    return places
+
+
+def _split(lst, place):
+    buckets = _make_buckets()
+    for num in lst:
+        buckets[_radify(num, place)].append(num)
+    return buckets
+
+
+def _flatten(lst):
+    flat = []
+    for sub in lst:
+        flat.extend(sub)
+    return flat

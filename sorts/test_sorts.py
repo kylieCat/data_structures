@@ -40,3 +40,11 @@ def test_sorts_quick():
         expected = sorted(test)
         actual = sorts.quick(test)
         assert actual == expected
+
+
+def test_sorts_radix():
+    for i in range(20):
+        test = [randint(1, 100000) for _ in range(1000)]
+        expected = sorted(test)
+        actual = sorts.radix(test)
+        assert actual == expected
