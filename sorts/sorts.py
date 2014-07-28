@@ -48,8 +48,7 @@ def radix(lst):
     place = _max_digits(lst)
     result = lst[:]
     for i in xrange(place):
-        result = _flatten(_split(lst, i))
-        print(result)
+        result = _flatten(_split(result, i))
     return result
 
 
