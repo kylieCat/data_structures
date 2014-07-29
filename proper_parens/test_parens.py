@@ -1,9 +1,9 @@
 import pytest
-from parens import proper_parens
+from parens import proper_parens2
 
 
 tests = {
-    u')('
+    u')(': -1,
     u'((((()))))': 0,
     u'()()()()()()': 0,
     u'(((()))': 1,
@@ -18,7 +18,5 @@ tests = {
 
 
 def test_proper_parens2():
-    with pytest.raises(ValueError):
-        proper_parens('r')
     for test in tests:
-        assert proper_parens(test) == tests[test]
+        assert proper_parens2(test) == tests[test]
