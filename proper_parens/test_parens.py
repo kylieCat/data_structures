@@ -1,5 +1,5 @@
 import pytest
-from proper_parens import proper_parens
+from parens import proper_parens
 
 
 tests = {
@@ -15,6 +15,7 @@ tests = {
     u'': 0,
     u'(' * 1000000: 1
 }
+
 
 def test_proper_parens2():
     with pytest.raises(ValueError):
