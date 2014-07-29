@@ -1,3 +1,4 @@
+import os
 from pytest import fixture
 from hashtable import HashTable
 
@@ -9,7 +10,7 @@ def make_hash_table():
 
 @fixture(scope='session')
 def get_words():
-    with open('words.txt') as words:
+    with open(os.path.join(os.path.dirname(__file__), 'words.txt')) as words:
         test_words = [line.strip() for line in words]
     return test_words[:255]
 
