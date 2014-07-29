@@ -1,5 +1,4 @@
-[![Build Status](https://travis-ci.org/eyueld-codefellow/data-structures1.svg?branch=master)](https://travis-ci.org/eyueld-codefellow/data-structures1)
-
+[![Build Status](https://travis-ci.org/im-auld/data_structures.svg?branch=master)](https://travis-ci.org/im-auld/data_structures)
 
 **Data Structures**
 
