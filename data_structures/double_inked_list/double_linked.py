@@ -1,5 +1,6 @@
 #! usr/bin/python
 
+
 class Node(object):
     def __init__(self, value):
         self.value = value
@@ -8,7 +9,8 @@ class Node(object):
 
     def __repr__(self):
         return str(self.value)
-    
+
+
 class DoubleLinkedList(object):
     def __init__(self, *nodes):
         if nodes:
@@ -18,9 +20,9 @@ class DoubleLinkedList(object):
             self.head = None
             self.tail = None
             self._size = 0
-    
+
     def insert(self, val):
-        """ Insert the value 'val' at the head of the list. """
+        """ Insert the value ``val`` at the head of the list. """
         if self.head:
             new_head, new_head.next = Node(val), self.head
             self.head.next, self.head = self.head, new_head
@@ -28,18 +30,16 @@ class DoubleLinkedList(object):
             self.head = self.tail = Node(val)
         self._size += 1
 
-    
     def append(self, val):
-        """ Append the value 'val' at the tail of the list. """
+        """ Append the value ``val`` at the tail of the list. """
         if self.head:
             new_tail, new_tail.prev = Node(val), self.tail
-            #self.tail.prev, self.tail = self.tail, new_tail
             self.tail.next = new_tail
             self.tail = new_tail
         else:
             self.head = self.tail = Node(val)
         self._size += 1
-    
+
     def pop(self):
         """ Pop the first value off the head of the list and return it. """
         if self.head:
@@ -51,7 +51,7 @@ class DoubleLinkedList(object):
             return result
         else:
             raise LookupError
-    
+
     def shift(self):
         """ Remove the last value from the tail of the list and return it. """
         if self.head:
@@ -63,7 +63,7 @@ class DoubleLinkedList(object):
             return result
         else:
             raise LookupError
-    
+
     def remove(self, val):
         """ 
         Remove the first instance of 'val' found in the list, starting from
@@ -73,20 +73,13 @@ class DoubleLinkedList(object):
             node = self.head
             while node:
                 if node.value == val:
-                    node.prev.next = node.next
-                    node.next.prev = node.prev
+                    node.prev.next, node.next.prev = node.next, node.prev
                     self._size -= 1
                     return True
                 node = node.next
             raise LookupError
         else:
             raise LookupError
-            
-            
-            
-            
-            
-            
-            
-            
-            
+
+    def size(self):
+        return self._size
