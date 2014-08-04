@@ -5,15 +5,21 @@ def proper_parens(parens):
     1: String is open, too many '('
     0: String is balanced
     -1: String is broken, too many ')'
+        >>> proper_parens(')(')
+        -1
+        >>> proper_parens('(())')
+        0
+        >>> proper_parens('(()')
+        1
     """
     try:
-        valid_chars = {u'(': 1, u')': -1}
+        valid_chars = {'(': 1, ')': -1}
         count = sum((
             valid_chars[p] if p in valid_chars else str(p) for p in parens
         ))
         return int(bool(count)) if count >= 0 else -1
     except TypeError:
-        print ('Invalid character in string')
+        print('Invalid character in string')
         raise ValueError()
 
 
@@ -24,9 +30,16 @@ def proper_parens2(parens):
     1: String is open, too many '('
     0: String is balanced
     -1: String is broken, too many ')'
+
+        >>> proper_parens(')(')
+        -1
+        >>> proper_parens('(())')
+        0
+        >>> proper_parens('(()')
+        1
     """
     total = 0
-    valid_chars = {u'(': 1, u')': -1}
+    valid_chars = {'(': 1, ')': -1}
     for paren in parens:
         total += valid_chars[paren]
         if total < 0:
