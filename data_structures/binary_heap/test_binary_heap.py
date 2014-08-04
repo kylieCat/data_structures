@@ -1,5 +1,6 @@
 from pytest import raises
-from binary_heap import BinaryHeap
+from data_structures.binary_heap.binary_heap import BinaryHeap
+
 
 def test_binary_heap():
     _heap = BinaryHeap()
@@ -13,7 +14,7 @@ def test_binary_heap():
     _heap.push(223)
     _heap.push(12)
     _heap.push(-2)
-    sortedList = _heap.values
+    sorted_list = _heap.values
     
     assert _heap.values == [223, 20, -2, 2, 12, -12]
     
