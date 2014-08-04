@@ -1,5 +1,5 @@
 import pytest
-import sorts
+from data_structures import sorts
 from random import randint
 
 

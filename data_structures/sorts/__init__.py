@@ -1,1 +1,1 @@
-from sorts import merge, insertion, quick, radix
+from data_structures.sorts.sorts import merge, insertion, quick, radix
