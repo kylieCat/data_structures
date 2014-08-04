@@ -12,20 +12,14 @@ def proper_parens(parens):
         >>> proper_parens('(()')
         1
     """
-    try:
-        valid_chars = {'(': 1, ')': -1}
-        count = sum((
-            valid_chars[p] if p in valid_chars else str(p) for p in parens
-        ))
-        return int(bool(count)) if count >= 0 else -1
-    except TypeError:
-        print('Invalid character in string')
-        raise ValueError()
+    valid_chars = {'(': 1, ')': -1}
+    count = sum(valid_chars.get(p, 0) for p in parens)
+    return int(bool(count)) if count >= 0 else -1
 
 
 def proper_parens2(parens):
     """
-    Takes a unicode string of parenthesis and checks to see if it is balanced.
+    Takes a string of parenthesis and checks to see if it is balanced.
     Returns:
     1: String is open, too many '('
     0: String is balanced
@@ -37,11 +31,13 @@ def proper_parens2(parens):
         0
         >>> proper_parens('(()')
         1
+        >>> proper_parens('(hello)')
+        0
     """
     total = 0
     valid_chars = {'(': 1, ')': -1}
     for paren in parens:
-        total += valid_chars[paren]
+        total += valid_chars.get(paren, 0)
         if total < 0:
             return -1
     return int(bool(total))

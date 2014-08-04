@@ -1,4 +1,4 @@
-from data_structures.proper_parens.parens import proper_parens2
+from data_structures.proper_parens import proper_parens2
 
 
 tests = {
@@ -12,7 +12,8 @@ tests = {
     '(((())))(()))': -1,
     '()(())((()))(((()))': 1,
     '': 0,
-    '(' * 1000000: 1
+    '(' * 1000000: 1,
+    '(hello)': 0
 }
 
 
