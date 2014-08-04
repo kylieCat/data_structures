@@ -1,5 +1,1 @@
-__author__ = 'Ian Auld'
-__date__ = '8/4/14'
-__tile__ = 'data_structures'
-__description__ = ''
-
+from data_structures.graph.graph import Graph, Node

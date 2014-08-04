@@ -2,7 +2,7 @@
 
 
 class Node(object):
-    def __init__(self, value, neighbours= None):
+    def __init__(self, value, neighbours=None):
         self.value = value
         self.name = "n{}"
         if neighbours:
@@ -81,7 +81,6 @@ class Graph(object):
             if node not in visited:
                 visited.append(node)
                 stack[0:0] = [n for n in self.graph[node] if n not in visited]
-                # import pdb; pdb.set_trace()
                 while len(self.graph[node]) > 1:
                     if node == start:
                         break
@@ -116,11 +115,6 @@ class Graph(object):
 
             for neighbor in self.graph[min_node]:
                 alt = visited[min_node] + self.graph[min_node][neighbor]
-                print('{} + {} = {}'.format(
-                    visited[min_node],
-                    self.graph[min_node][neighbor],
-                    alt
-                ))
                 if neighbor not in visited or alt < visited[neighbor]:
                     visited[neighbor] = alt
                     if min_node not in path:
@@ -134,7 +128,6 @@ class Graph(object):
         matrix of a_graph containing the shortest path
         """
         inf = float('inf')
-        a_graph = a_graph
 
         def adj(self):
             """ Given a graph, adj creates an adjacency matrix of a graph."""
