@@ -1,5 +1,5 @@
 import pytest
-from balanced_bst import BST, Node
+from data_structures.balanced_bst.balanced_bst import BST
 
 
 @pytest.fixture(scope='function')
