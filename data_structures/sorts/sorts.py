@@ -1,3 +1,9 @@
+try:
+    xrange(1)
+except NameError:
+    xrange = range
+
+
 def insertion(lst):
     if not lst or len(lst) < 2:
         return lst
