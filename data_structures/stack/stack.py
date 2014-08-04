@@ -1,11 +1,4 @@
 #! /usr/bin/python
-class EmptyStack(Exception):
-    def __init__(self):
-        self.message = 'Stack is empty'
-        
-    def __str__(self):
-        return str(self.message)
-
 class Node(object):
     def __init__(self, value=None, next=None):
         self.value = value
@@ -13,12 +6,12 @@ class Node(object):
         
     def __repr__(self):
         return str(self.value)
-  
+
 
 class Stack(object):
-    def __init__(self, head = None):
+    def __init__(self, head=None):
         self.head = head
-    
+
     def push(self, data):
         """
         Adds a data element to the stack
@@ -26,10 +19,11 @@ class Stack(object):
         """
         data.next = self.head
         self.head = data
-    
+
     def pop(self):
         """
-        Removes a data element from the stack and returns the value of that data element.
+        Removes a data element from the stack and returns the value of
+        that data element.
         """
         if self.head:
             result = self.head.value
@@ -37,13 +31,4 @@ class Stack(object):
             self.head.next, self.head = None, next
             return result
         else:
-            raise EmptyStack()
-            
-            
-            
-            
-            
-            
-            
-            
-            
+            raise IndexError('Pop from empty list.')
