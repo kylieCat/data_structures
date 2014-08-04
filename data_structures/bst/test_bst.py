@@ -1,5 +1,5 @@
 import pytest
-from bst import BST, Node
+from data_structures.bst import BST, Node
 
 
 @pytest.fixture(scope='function')
@@ -11,15 +11,8 @@ def make_bst():
 @pytest.fixture(scope='function')
 def make_nodes(make_bst):
     bst = make_bst
-    bst.insert(10)
-    bst.insert(2)
-    bst.insert(1)
-    bst.insert(4)
-    bst.insert(3)
-    bst.insert(5)
-    bst.insert(11)
-    bst.insert(13)
-    bst.insert(12)
+    for val in [10, 2, 1, 4, 3, 5, 11, 13, 12]:
+        bst.insert(val)
     return bst
 
 
@@ -30,9 +23,9 @@ def test_bst():
 def test_node():
     node = Node(2)
     assert node.value == 2
-    assert node.l_child == None
-    assert node.r_child == None
-    assert node.parent == None
+    assert node.l_child is None
+    assert node.r_child is None
+    assert node.parent is None
 
 
 def test_insert():
@@ -49,7 +42,7 @@ def test_insert():
 
 def test_contains():
     bst = BST()
-    for i in range(1,11):
+    for i in range(1, 11):
         bst.insert(i)
     assert bst.contains(1)
     assert bst.contains(5)
@@ -74,9 +67,10 @@ def test_depth():
     bst.insert(6)
     assert bst.depth(node=bst.root) == 3
 
+
 def test_depth_all_right():
     bst = BST()
-    for i in range(10,110,10):
+    for i in range(10, 110, 10):
         bst.insert(i)
     assert bst.depth(bst.root) == 10
 
@@ -90,12 +84,11 @@ def test_depth_all_left():
 
 def test_depth_collatz():
     bst = BST()
-    for i in range(1,11):
+    for i in range(1, 11):
         if not i % 2:
             i /= 2
         else:
             i = i * 3 + 1
-        print('i = {}'.format(i))
         bst.insert(i)
     assert bst.depth(bst.root) == 5
 
@@ -129,11 +122,10 @@ def test_balanced():
 def test_in_order(make_nodes):
     bst = make_nodes
     pre = bst.in_order()
-    expected = [1,2,3,4,5,10,11,12,13]
+    expected = [1, 2, 3, 4, 5, 10, 11, 12, 13]
     actual = []
     for num in pre:
         actual.append(num.value)
-    print('actual: {}'.format(actual))
     assert actual == expected
 
 
@@ -144,7 +136,6 @@ def test_empty_in_order(make_bst):
     actual = []
     for num in pre:
         actual.append(num)
-    print('actual: {}'.format(actual))
     assert actual == expected
 
 
@@ -155,7 +146,6 @@ def test_pre_order(make_nodes):
     actual = []
     for num in pre:
         actual.append(num.value)
-    print('actual: {}'.format(actual))
     assert actual == expected
 
 
@@ -177,7 +167,6 @@ def test_post_order(make_nodes):
     actual = []
     for num in pre:
         actual.append(num.value)
-    print('actual: {}'.format(actual))
     assert actual == expected
 
 
@@ -188,7 +177,6 @@ def test_empty_post_order(make_bst):
     actual = []
     for num in pre:
         actual.append(num)
-    print('actual: {}'.format(actual))
     assert actual == expected
 
 
@@ -199,7 +187,6 @@ def test_level_order(make_nodes):
     actual = []
     for num in pre:
         actual.append(num.value)
-    print('actual: {}'.format(actual))
     assert actual == expected
 
 
@@ -210,7 +197,6 @@ def test_empty_level_order(make_bst):
     actual = []
     for num in pre:
         actual.append(num)
-    print('actual: {}'.format(actual))
     assert actual == expected
 
 
@@ -234,8 +220,6 @@ def test_delete_leaf(make_nodes):
     gen = bst.pre_order()
     for num in gen:
         actual.append(num.value)
-    print('actual: {}'.format(actual))
-    print('expected: {}'.format(expected))
     assert actual == expected
 
 
@@ -247,6 +231,4 @@ def test_delete_middle(make_nodes):
     gen = bst.pre_order()
     for num in gen:
         actual.append(num.value)
-    print('actual: {}'.format(actual))
-    print('expected: {}'.format(expected))
     assert actual == expected
