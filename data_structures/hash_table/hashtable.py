@@ -1,19 +1,17 @@
 class HashTable(object):
-
     def __init__(self, size):
         self.size = size
-        self.hash_table = [[] for i in range(self.size)]
+        self.hash_table = [[] for _ in range(self.size)]
 
     def hash(self, key):
-        sum = 0
+        total = 0
         for letter in key:
-            sum += ord(letter)
-
-        if self.size & (self.size - 1) == 0:
-            sum = sum & (self.size - 1)
+            total += ord(letter)
+        if not self.size & self.size - 1:
+            total &= self.size - 1
         else:
-            sum = sum % self.size
-        return sum
+            total = total % self.size
+        return total
 
     def set(self, key, value):
         key_index = self.hash(key)
@@ -24,6 +22,3 @@ class HashTable(object):
             if item[0] == key:
                 return item[1]
         raise KeyError
-
-
-

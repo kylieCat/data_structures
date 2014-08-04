@@ -1,19 +1,18 @@
 import os
-from pytest import fixture
+import pytest
 from data_structures.hash_table.hashtable import HashTable
 
 
-@fixture(scope='session')
+@pytest.fixture(scope='session')
 def make_hash_table():
     ht = HashTable(256)
     return ht
 
 
-@fixture(scope='session')
 def get_words():
     with open(os.path.join(os.path.dirname(__file__), 'words.txt')) as words:
-        test_words = [line.strip() for line in words]
-    return test_words[:255]
+        for line in words:
+            yield line.strip()
 
 
 def test_hash_table(make_hash_table):
@@ -21,11 +20,11 @@ def test_hash_table(make_hash_table):
     assert isinstance(ht, HashTable)
 
 
-def test_get_set(make_hash_table, get_words):
+def test_get_set(make_hash_table):
     ht = make_hash_table
-    for word in get_words:
+    for word in get_words():
         ht.set(word, word)
-    for word in get_words:
+    for word in get_words():
         assert ht.get(word) == word
 
 
