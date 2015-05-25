@@ -87,3 +87,12 @@ def _flatten(lst):
     for sub in lst:
         flat.extend(sub)
     return flat
+
+def bubble(lst):
+    end = len(lst)
+    while end:
+        for idx in range(1, end):
+            if lst[idx] < lst[idx-1]:
+                lst[idx], lst[idx -1] = lst[idx-1], lst[idx]
+        end -= 1
+    return lst
